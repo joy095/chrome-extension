@@ -1,0 +1,22 @@
+-- schema.sql
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  display_name TEXT NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS blocked_sites (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id TEXT NOT NULL,
+  url_pattern TEXT NOT NULL,
+  category_id INTEGER,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+  user_id TEXT PRIMARY KEY,
+  enabled INTEGER DEFAULT 1,
+  updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+);

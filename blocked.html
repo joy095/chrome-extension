@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Website Blocked</title>
+    <style>
+      :root {
+        --primary: #4361ee;
+        --primary-dark: #3a56d4;
+        --secondary: #7209b7;
+        --danger: #ef476f;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --border: #e0e6ed;
+        --shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-weight: 800;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .icon {
+        font-size: 80px;
+        margin-bottom: 30px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        min-width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      button svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      #backBtn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      #backBtn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+      }
+
+      #disableBtn {
+        background: rgba(231, 76, 60, 0.9);
+        color: white;
+      }
+
+      #disableBtn:hover {
+        background: rgba(231, 76, 60, 1);
+        transform: translateY(-3px);
+      }
+
+      #settingsBtn {
+        background: rgba(52, 152, 219, 0.9);
+        color: white;
+      }
+
+      #settingsBtn:hover {
+        background: rgba(52, 152, 219, 1);
+        transform: translateY(-3px);
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      .site-info {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 12px;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon">🚫</div>
+      <h1>Website Blocked</h1>
+      <p>
+        This website has been blocked by Premium Website Blocker to help you
+        stay focused and productive.
+      </p>
+
+      <div class="site-info">
+        Blocked site: <strong id="blockedUrl">Loading...</strong>
+      </div>
+
+      <div class="button-group">
+        <button id="backBtn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12H5M12 19L5 12L12 5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Go Back
+        </button>
+        <button id="disableBtn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18.364 18.364C15.234 21.494 10.166 21.494 7.036 18.364C3.906 15.234 3.906 10.166 7.036 7.036C10.166 3.906 15.234 3.906 18.364 7.036C21.494 10.166 21.494 15.234 18.364 18.364Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 9L9 15"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 9L15 15"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Disable Temporarily
+        </button>
+        <button id="settingsBtn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.4 15C19.2667 15.4667 19.0667 15.8667 18.8 16.2C18.2667 16.8667 17.6 17.4 16.8 17.8C15.6 18.4667 14.3333 18.8667 13 19C12.6667 19 12.3333 19 12 19C11.6667 19 11.3333 19 11 19C9.66667 18.9333 8.4 18.5333 7.2 17.8C6.4 17.4 5.73333 16.8667 5.2 16.2C4.93333 15.8667 4.73333 15.4667 4.6 15C4.2 13.8 4 12.5333 4 11.2C4 9.86667 4.2 8.6 4.6 7.4C4.73333 6.93333 4.93333 6.53333 5.2 6.2C5.73333 5.53333 6.4 5 7.2 4.6C8.4 3.93333 9.66667 3.53333 11 3.4C11.3333 3.33333 11.6667 3.33333 12 3.33333C12.3333 3.33333 12.6667 3.33333 13 3.4C14.3333 3.46667 15.6 3.86667 16.8 4.6C17.6 5 18.2667 5.53333 18.8 6.2C19.0667 6.53333 19.2667 6.93333 19.4 7.4C19.8 8.6 20 9.86667 20 11.2C20 12.5333 19.8 13.8 19.4 15Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Settings
+        </button>
+      </div>
+
+      <div class="footer">Premium Website Blocker Extension</div>
+    </div>
+
+    <script>
+      // Display the blocked URL
+      document.getElementById("blockedUrl").textContent =
+        window.location.hostname;
+
+      document.getElementById("backBtn").addEventListener("click", () => {
+        history.back();
+      });
+
+      document.getElementById("disableBtn").addEventListener("click", () => {
+        if (
+          confirm(
+            "Are you sure you want to disable blocking temporarily for 30 minutes?"
+          )
+        ) {
+          chrome.storage.local.set({ enabled: false }, () => {
+            chrome.runtime.sendMessage(
+              {
+                action: "toggleBlocking",
+                enabled: false,
+              },
+              () => {
+                // Re-enable after 30 minutes
+                setTimeout(() => {
+                  chrome.storage.local.set({ enabled: true }, () => {
+                    chrome.runtime.sendMessage({
+                      action: "toggleBlocking",
+                      enabled: true,
+                    });
+                  });
+                }, 30 * 60 * 1000); // 30 minutes
+
+                history.back();
+              }
+            );
+          });
+        }
+      });
+
+      document.getElementById("settingsBtn").addEventListener("click", () => {
+        chrome.runtime.openOptionsPage();
+      });
+    </script>
+  </body>
+</html>

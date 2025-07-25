@@ -1,0 +1,50 @@
+[
+  {
+    "id": "adult",
+    "name": "adult",
+    "displayName": "Adult Content",
+    "sites": [
+      "*://*porn*.com/*",
+      "*://*sex*.com/*",
+      "*://*adult*.com/*",
+      "*://*xxx*.com/*",
+      "*://*cam*.com/*"
+    ]
+  },
+  {
+    "id": "entertainment",
+    "name": "entertainment",
+    "displayName": "Entertainment",
+    "sites": [
+      "*://*youtube.com/*",
+      "*://*netflix.com/*",
+      "*://*hulu.com/*",
+      "*://*disneyplus.com/*",
+      "*://*hbo.com/*"
+    ]
+  },
+  {
+    "id": "social",
+    "name": "social",
+    "displayName": "Social Media",
+    "sites": [
+      "*://*facebook.com/*",
+      "*://*instagram.com/*",
+      "*://*twitter.com/*",
+      "*://*tiktok.com/*",
+      "*://*snapchat.com/*"
+    ]
+  },
+  {
+    "id": "blogger",
+    "name": "blogger",
+    "displayName": "Blogger Sites",
+    "sites": [
+      "*://*blogspot.com/*",
+      "*://*wordpress.com/*",
+      "*://*medium.com/*",
+      "*://*tumblr.com/*",
+      "*://*blogger.com/*"
+    ]
+  }
+]

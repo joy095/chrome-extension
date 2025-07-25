@@ -1,0 +1,13 @@
+name = "website-blocker-worker"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "website-blocker-db"
+database_id = "734f9ff9-dc33-4d4a-a78b-d86da1d4b1cc"
+
+
+[placement]
+mode = "smart"

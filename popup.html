@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --primary: #4361ee;
+        --primary-dark: #3a56d4;
+        --secondary: #7209b7;
+        --success: #06d6a0;
+        --danger: #ef476f;
+        --warning: #ffd166;
+        --dark: #1a1a2e;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --border: #e0e6ed;
+        --shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 380px;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        color: var(--dark);
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: white;
+        padding: 20px;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 4px 12px var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        transform: rotate(30deg);
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .header h1 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header h1 svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .header p {
+        font-size: 13px;
+        opacity: 0.9;
+        margin: 0;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .toggle-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        padding: 18px 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .toggle-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .toggle-container span {
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--dark);
+      }
+
+      .category {
+        background: white;
+        margin: 15px 0;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .category:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        cursor: pointer;
+        background: #f8fafc;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .category-header-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .category-icon {
+        font-size: 20px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: rgba(67, 97, 238, 0.1);
+        color: var(--primary);
+      }
+
+      .category-header h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .sites-count {
+        background: #e0e7ff;
+        color: var(--primary);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .category-content {
+        padding: 0 20px 20px;
+        display: none;
+      }
+
+      .category-content.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .toggle {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+      }
+
+      .toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: var(--primary);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(24px);
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      #settingsBtn {
+        background: var(--primary);
+        color: white;
+      }
+
+      #settingsBtn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      #whitelistBtn {
+        background: white;
+        color: var(--gray);
+        border: 1px solid var(--border);
+      }
+
+      #whitelistBtn:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+      }
+
+      .status {
+        text-align: center;
+        padding: 14px;
+        border-radius: 12px;
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        display: none;
+      }
+
+      .status.active {
+        display: block;
+        background: #d1fae5;
+        color: #065f46;
+      }
+
+      .status.inactive {
+        display: block;
+        background: #fee2e2;
+        color: #991b1b;
+      }
+
+      .connection-status {
+        text-align: center;
+        font-size: 12px;
+        color: var(--gray);
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .connection-status.connected {
+        color: #059669;
+        background: rgba(209, 250, 229, 0.5);
+      }
+
+      .connection-status.disconnected {
+        color: #dc2626;
+        background: rgba(254, 226, 226, 0.5);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 30px 20px;
+        color: var(--gray);
+      }
+
+      .empty-state svg {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 15px;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <h1>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 16V12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 8H12.01"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Premium Website Blocker
+        </h1>
+        <p>Take control of your browsing habits</p>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="toggle-container">
+        <span>Enable Blocking</span>
+        <label class="toggle">
+          <input type="checkbox" id="masterToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div id="categories">
+        <div class="empty-state">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p>Loading categories...</p>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="settingsBtn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M19.4 15C19.2667 15.4667 19.0667 15.8667 18.8 16.2C18.2667 16.8667 17.6 17.4 16.8 17.8C15.6 18.4667 14.3333 18.8667 13 19C12.6667 19 12.3333 19 12 19C11.6667 19 11.3333 19 11 19C9.66667 18.9333 8.4 18.5333 7.2 17.8C6.4 17.4 5.73333 16.8667 5.2 16.2C4.93333 15.8667 4.73333 15.4667 4.6 15C4.2 13.8 4 12.5333 4 11.2C4 9.86667 4.2 8.6 4.6 7.4C4.73333 6.93333 4.93333 6.53333 5.2 6.2C5.73333 5.53333 6.4 5 7.2 4.6C8.4 3.93333 9.66667 3.53333 11 3.4C11.3333 3.33333 11.6667 3.33333 12 3.33333C12.3333 3.33333 12.6667 3.33333 13 3.4C14.3333 3.46667 15.6 3.86667 16.8 4.6C17.6 5 18.2667 5.53333 18.8 6.2C19.0667 6.53333 19.2667 6.93333 19.4 7.4C19.8 8.6 20 9.86667 20 11.2C20 12.5333 19.8 13.8 19.4 15Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Settings
+        </button>
+        <button id="whitelistBtn">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Whitelist
+        </button>
+      </div>
+
+      <div id="status" class="status"></div>
+      <div id="connectionStatus" class="connection-status">
+        Connecting to cloud...
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
